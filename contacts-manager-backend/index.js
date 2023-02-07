@@ -1,16 +1,20 @@
-const express = require("express");
-const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
-const dbServer = require("./database/mongoose");
-const cors = require("cors");
-const port = 8080;
-const contactRoutes = require("./routes/contacts");
-
-dbServer();
-const app = express();
+const connectToMongo=require("./db");
+const express=require("express");
+const app=express();
+const port=5000;
+var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-app.set("/api/v1/contacts", contactRoutes);
+connectToMongo();
+app.use(express.json())
 
-app.listen(port, () => {console.log(`Port ${port} is running successfully...`)});
+app.use('/api/auth',require('./routes/auth'))
+
+app.get("/",(req,res)=>{
+    res.send("Hello Contacts-Manager")
+})
+
+app.listen(port,()=>{
+    console.log(`contacts manager backend is listening on port ${port}`)
+})
