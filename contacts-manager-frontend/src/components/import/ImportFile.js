@@ -12,7 +12,7 @@ const ImportFile = () => {
             fetch("http://localhost:5000/api/contacts", {
                 method: "POST",
                 headers: {
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNlMjhhOTcwNzBjNTJmMGE5MmFkOGFlIn0sImlhdCI6MTY3NTc5MDk5OX0.PxqlvzBcHiUkeyf5w3sRal2y9WUm9pgRbYrYPsLbOKI"
+                    "auth-token": localStorage.getItem('token')
                 },
                 body: formData
             }).then((res) => {
@@ -26,20 +26,14 @@ const ImportFile = () => {
 
     return(
         <div className="import-container">
-            <div>
-                <p style={{fontWeight: 700, marginTop: 5}}>Import File</p>
-            </div>
+            
             <div className="drag-zone">
                 <p>Drag & Drop a CSV File to Upload</p>
                 <div className="drop-zone">
                     <input type="file" onChange={(e) => {setFile(e.target.files[0])}} />
                 </div>
             </div>
-            <div className="cancel-button">
-                <button>Cancel</button>
-            </div>
-
-            <div className="import-done">
+            <div className="import-done container">
                 {apiData && 
                 <>
                 <h2>Import Complete</h2>
