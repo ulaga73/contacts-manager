@@ -1,3 +1,4 @@
+import Contact from './components/contactpage/Contact';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Login/>
       <Signup/>
+      <Contact/>
     </div>
   );
 }
