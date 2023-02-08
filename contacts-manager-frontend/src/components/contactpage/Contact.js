@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Contacts = () => {
-  // const [contacts, setContacts] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
