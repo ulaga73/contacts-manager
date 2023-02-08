@@ -10,6 +10,7 @@
     border-radius: 10px;
     position: relative;
     left: 40%;
+    padding: 5px;
 }
 .drag-zone{
     margin-bottom: 20px;
@@ -17,4 +18,13 @@
     text-align: center;
     padding: 10px;
     width: 12rem;
+}
+.import-done{
+    padding: 10px;
+}
+.import-done h2{
+    color: green;
+}
+.import-done p{
+    text-align: center;
 }
