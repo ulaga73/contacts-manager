@@ -4,6 +4,7 @@ const router=express.Router();
 const bcrypt=require('bcryptjs');
 const{body,validationResult}=require('express-validator')
 let jwt=require("jsonwebtoken");
+const fetchUser = require("../fetchUser");
 
 const JWT_SECRET='ContactsManager';
 

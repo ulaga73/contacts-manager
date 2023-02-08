@@ -15,7 +15,6 @@ app.use(fileUpload());
 
 
 app.use('/api/auth',require('./routes/auth'))
-app.use('/api/contacts', require("./routes/getcontacts"))
 app.use("/api/contacts", require("./routes/contacts"));
 
 

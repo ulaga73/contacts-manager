@@ -11,6 +11,7 @@
     position: relative;
     left: 40%;
     padding: 5px;
+    margin-top: 20px;
 }
 .drag-zone{
     margin-bottom: 20px;

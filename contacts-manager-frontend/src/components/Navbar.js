@@ -28,6 +28,13 @@ const Navbar=()=> {
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
         </li>
+
+        <li>
+          <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/import">Import</Link>
+        </li>
+        <li>
+          <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/delete">Delete</Link>
+        </li>
         
         
       </ul>
