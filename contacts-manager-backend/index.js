@@ -10,6 +10,7 @@ connectToMongo();
 app.use(express.json())
 
 app.use('/api/auth',require('./routes/auth'))
+app.use('/api/contacts', require("./routes/getcontacts"))
 
 app.get("/",(req,res)=>{
     res.send("Hello Contacts-Manager")
