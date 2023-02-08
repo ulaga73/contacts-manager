@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetchUser = require("../fetchUser")
-const Contact = require("../models/Contacts")
+const Contact = require("../models/contacts")
 
 router.get('/fetchallcontacts', fetchUser, async (req, res) => {
     try {
