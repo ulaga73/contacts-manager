@@ -4,13 +4,13 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 21rem;
+    /* width: 21rem;
     height: 20rem;
     border: 1px solid;
     border-radius: 10px;
     position: relative;
     left: 40%;
-    padding: 5px;
+    padding: 5px; */
 }
 .drag-zone{
     margin-bottom: 20px;
