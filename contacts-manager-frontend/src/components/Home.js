@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import "../styles/Home.css";
-
-import React from 'react'
 import Contacts from './contactpage/Contact'
 import ImportNavBar from "./navigation/ImportNavBar"
 import Search from './Search'
