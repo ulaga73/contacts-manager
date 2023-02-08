@@ -1,4 +1,5 @@
 import React from 'react'
+import Contacts from './contactpage/Contact'
 import ImportNavBar from "./navigation/ImportNavBar"
 import Search from './Search'
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Search/>
       <ImportNavBar/>
+      <Contacts/>
     </div>
   )
 }
