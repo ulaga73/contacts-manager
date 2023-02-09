@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import ImportFile from "../import/ImportFile";
 
-const ImportNavBar = () => {
+
+const ImportNavBar = (props) => {
+    function handleClick(){
+        if(props.value.length){
+            fetch("http://localhost:5000/api/contacts", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({delId: props.value})
+            })
+        }
+    }
     return (
         <div className="container d-flex justify-content-between my-2">
 
@@ -14,7 +26,7 @@ const ImportNavBar = () => {
 
 
             <div>
-                <Link to={"/home"}><button type="button" className="btn btn-primary  mx-1 btn-sm my-1">Delete</button></Link>
+                <Link to={"/delete"}><button type="button" className="btn btn-primary  mx-1 btn-sm my-1" onClick={handleClick}>Delete</button></Link>
 
 
                 <button type="button" className="btn btn-primary btn-sm mx-1 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
