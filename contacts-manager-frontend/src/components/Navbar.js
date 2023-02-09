@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
 const Navbar=()=> {
+  let homepath="/home"
+  {!localStorage.getItem('token')?homepath="/":homepath="/home"}
   let location=useLocation();
   let history=useNavigate();
   // useEffect(()=>{
@@ -16,25 +18,25 @@ const Navbar=()=> {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div className="container-fluid">
-    <Link className="navbar-brand" to="/">Contacts Manager</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <Link  className="navbar-brand" to="/">Contacts Manager</Link>
+    <button disabled className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <Link className={`nav-link ${location.pathname==="/"?"active":""}`} aria-current="page" to="/home">Home</Link>
+          <Link  className={`nav-link ${location.pathname==="/"?"active":""}`} aria-current="page" to={homepath}>Home</Link>
         </li>
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
         </li>
 
-        <li>
+        {/* <li>
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/import">Import</Link>
         </li>
         <li>
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/delete">Delete</Link>
-        </li>
+        </li> */}
         
         
       </ul>
