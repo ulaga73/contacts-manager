@@ -1,0 +1,15 @@
+.form-control.me-2 {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 20px 0;
+  }
+  
+  @media (max-width: 767px) {
+    .form-control.me-2 {
+      width: 100%;
+    }
+  }
+  
