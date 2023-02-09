@@ -1,35 +1,48 @@
 import React, { useState } from 'react'
 
 const Search = (props) => {
-    const contacts = props.contacts;
-    //console.log(contacts)
-    const [searchResults, setSearchResults] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+  const contacts = props.contacts;
+  //console.log(contacts)
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const handleSearch = (event) => {
-        var searchTerm = event.target.value
-        setSearchTerm(searchTerm)
-        // search contacts starting with this value
-        if (searchTerm == "") {
-            setSearchResults([]);
-            return;
-        }
-
-        const filteredContacts = contacts.filter(contact =>
-            contact.email.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setSearchResults(null);
-        setSearchResults(filteredContacts);
-    };
-
-    const onRecommendationSelected = (contact) => {
-        setSearchTerm(contact.email)
-        props.onDataFromChild(contact)
+  const handleSearch = (event) => {
+    var searchTerm = event.target.value
+    setSearchTerm(searchTerm)
+    // search contacts starting with this value
+    if (searchTerm == "") {
+      setSearchResults([]);
+      return;
     }
 
-    return (
-        <div>
-            {/* <div className='container justify-content-between my-2'>
+    const filteredContacts = contacts.filter(contact =>
+      contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(null);
+    setSearchResults(filteredContacts);
+
+    // notify home that search has changed
+    props.onSearchChange();
+  };
+
+  const onRecommendationSelected = (contact) => {
+    setSearchTerm(contact.email)
+    props.onDataFromChild(contact)
+    setSearchResults([]);
+  }
+
+  return (
+    <div>
+      <div>
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm}
+          onChange={handleSearch} />
+      </div>
+      <ul>
+        {searchResults.map((contact) => (
+          <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
+        ))}
+      </ul>
+      {/* <div className='container justify-content-between my-2'>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
                         <a className="navbar-brand disabled" href="#">Total contacts</a>
@@ -46,17 +59,8 @@ const Search = (props) => {
                     </div>
                 </nav>
             </div> */}
-            <div>
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm}
-                    onChange={handleSearch} />
-            </div>
-            <ul>
-                {searchResults.map((contact) => (
-                    <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
-                ))}
-            </ul>
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Search
