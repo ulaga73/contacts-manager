@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import "../styles/Home.css";
-import Contacts from './contactpage/Contact'
+// import Contacts from './contactpage/Contact'
 import ImportNavBar from "./navigation/ImportNavBar"
-import Search from './Search'
+import Search from './search/Search';
 
 const Home = () => {
   const [apiData, setApiData] = useState("");
@@ -21,8 +21,20 @@ const Home = () => {
     })
   }, [])
   const data = apiData.result;
+
+  const handleDataFromChild = (data) => {
+    // Do something with the data passed back from the child
+   
+      // update data
+    console.log("home callback function called")
+    console.log(data)
+    //setApiData(data)
+  }
+
   return (
     <div>
+      <Search contacts={data} onDataFromChild={handleDataFromChild}/>
+      
       <div className='contacts-container'>
         <table>
           <thead>
@@ -60,9 +72,8 @@ const Home = () => {
         </table>
       </div>
       <div>
-        <Search/>
         <ImportNavBar/>
-        <Contacts/>
+        {/* <Contacts/> */}
       </div>
     </div>
   )
