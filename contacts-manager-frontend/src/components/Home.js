@@ -2,7 +2,7 @@
 import React from 'react';
 import Contacts from './contactpage/Contact'
 import ImportNavBar from './navigation/ImportNavBar';
-import  Search from './Search';
+import Search from './search/Search';
 const Home = () => {
 
   return (
@@ -11,6 +11,9 @@ const Home = () => {
     <Search/>
       <ImportNavBar />
       <Contacts />
+
+
+   
     </div>
 
   )
