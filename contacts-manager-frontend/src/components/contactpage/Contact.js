@@ -1,53 +1,64 @@
-import React, { useState, useEffect } from "react";
-// import { Table } from "react-bootstrap";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
 
-const Contacts = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
+const Contact = () => {
+  const [apiData, setApiData] = useState("");
   useEffect(() => {
-    const fetchData = async () => {
-      // Url to be updated.
-      axios.get('http://localhost:5000/api/contacts/fetchallcontacts', {
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token': '', // Put access token
-        }
-      })
-        .then(response => {
-          // handle success
-          console.log(response.data);
-          setData(response.data);
-          setLoading(false);
-        })
-        .catch(error => {
-          // handle error
-          setLoading(false);
-        });
-    };
-    fetchData();
-  }, []);
+    console.log(localStorage.getItem("token"));
+    fetch("http://localhost:5000/api/contacts", {
+      headers: {
+        "auth-token": localStorage.getItem("token")
+      }
+    }).then((res) => {
+      return res.json();
+    }).then((data) => {
+      console.log(data);
+      setApiData(data);
+    })
+  }, [])
+  
+  const data = apiData.result;
   return (
     <div>
-      <h2>Contacts</h2>
-      <ul>
-        {data.map(item => (
-          <tr key={item.email}>
-            <td>{item.name}</td>
-            <td>{item.designation}</td>
-            <td>{item.company}</td>
-            <td>{item.industry}</td>
-            <td>{item.email}</td>
-            <td>{item.phone}</td>
-            <td>{item.email}</td>
-            <td>{item.country}</td>
+      
+      <table className="table table-primary table-striped">
+        <thead className="table-primary">
+          <tr className="table-primary">
+            <th className="table-primary"><th><input type="checkbox" name='del' /></th></th>
+            <th className="table-primary">Name</th>
+            <th className="table-primary">Designation</th>
+            <th className="table-primary">Company</th>
+            <th className="table-primary">Industry</th>
+            <th className="table-primary">Email</th>
+            <th className="table-primary">Phone number</th>
+            <th className="table-primary">Country</th>
+            <th className="table-primary">Action</th>
           </tr>
-        ))}
-      </ul>
+        </thead>
+        <tbody className="table-primary">
+          {
+            data?.map((data, index) => {
+              return (
+                <tr key={index} className="table-primary">
+                  <td><input type="checkbox" /></td>
+                  <td className="table-primary">{data.name}</td>
+                  <td className="table-primary">{data.designation}</td>
+                  <td className="table-primary">{data.company}</td>
+                  <td className="table-primary">{data.industry}</td>
+                  <td className="table-primary">{data.email}</td>
+                  <td className="table-primary">{data.phone}</td>
+                  <td className="table-primary">{data.country}</td>
+                  <td className="table-primary">
+                    <i className="fa-regular fa-pen-to-square mx-1"></i>
+                    <i className="fa-solid fa-trash mx-1" style={{"cursor": "pointer"}}></i></td>
+                </tr>
+              )
+            })
+          }
+        </tbody>
+      </table>
     </div>
-  );
+  )
+}
 
-};
-
-export default Contacts;
+export default Contact
