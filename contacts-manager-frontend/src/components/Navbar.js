@@ -36,8 +36,7 @@ const Navbar=()=> {
         </li>
         <li>
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/delete">Delete</Link>
-        </li> */}
-        
+        </li> */}        
         
       </ul>
       {!localStorage.getItem('token')?<form className="d-flex" role="search">

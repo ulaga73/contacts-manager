@@ -4,13 +4,13 @@ const DeleteFile = () => {
     return(
         <div className="delete-container">
             <div className="text-contain">
-                <p >Delete Contacts</p>
-                <p>Sure you want delete this contacts?</p>
+                <p>Deleted</p>
+                <p>The Selected Files are Deleted</p>
             </div>
-            <div className="btn-contain">
+            {/* <div className="btn-contain">
                 <button>Cancel</button>
                 <button>Ok</button>
-            </div>
+            </div> */}
         </div>
     )
 }

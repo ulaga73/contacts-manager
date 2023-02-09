@@ -2,7 +2,6 @@ import "./importFile.css";
 import { useEffect, useState } from "react";
 
 const ImportFile = () => {
-
   const [file, setFile] = useState(null);
   const [apiData, setApiData] = useState(null);
   console.log(file);
@@ -26,7 +25,6 @@ const ImportFile = () => {
   }, [file])
 
   return (
-
     <div>
       <div className="import-container">
 
@@ -42,14 +40,12 @@ const ImportFile = () => {
               <h2>Import Complete</h2>
               <p>CSV File is Uploaded</p>
             </>}
-
         </div>
       </div>
       <div className="cancel-button">
         <button>Cancel</button>
       </div>
       
-
       <div className="import-done">
         {apiData && (
           <>

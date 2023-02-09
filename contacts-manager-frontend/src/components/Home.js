@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Contacts from './contactpage/Contact'
 import ImportNavBar from './navigation/ImportNavBar';
@@ -11,12 +10,9 @@ const Home = () => {
     <Search/>
       <ImportNavBar />
       <Contacts />
-
-
-   
     </div>
 
   )
 }
 
-export default Home
+export default Home;

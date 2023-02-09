@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import "../styles/Home.css";
+// import Contacts from './contactpage/Contact'
+import ImportNavBar from "./navigation/ImportNavBar"
+import Search from './Search'
 
 
 const Contact = () => {
+  //State Variables
   const [apiData, setApiData] = useState("");
+  const [deleteData, setDeleteData] = useState([]); 
+  const [select, setSelect] = useState(false);
+
+//API Call
   useEffect(() => {
     console.log(localStorage.getItem("token"));
     fetch("http://localhost:5000/api/contacts", {
@@ -16,41 +25,70 @@ const Contact = () => {
       setApiData(data);
     })
   }, [])
-  
+  //Server Response
   const data = apiData.result;
+  console.log(deleteData);
+
+  // To select individual checkbox
+  function handleCheck(e){
+    console.log(e.target.checked);
+    if(e.target.checked) {
+      setDeleteData([...deleteData, e.target.id]);
+    }else{
+      setDeleteData(deleteData.filter(val => val !== e.target.id))
+    }
+  }
+
+  // To Select All checkboxes
+  function handleCheckAll(e){
+    setSelect(!select);
+    if(e.target.checked){
+      const valObj = apiData.result;
+      let arr = [];
+      for(let i = 0; i < valObj.length; i++){
+        const valId = valObj[i]._id;
+        arr.push(valId);
+      }
+      setDeleteData([...deleteData, ...arr]);
+    }else{
+      setDeleteData([]);
+    }
+  }
+  // JSX
   return (
-    <div>
-      
-      <table className="table table-primary table-striped">
-        <thead className="table-primary">
-          <tr className="table-primary">
-            <th className="table-primary"><th><input type="checkbox" name='del' /></th></th>
-            <th className="table-primary">Name</th>
-            <th className="table-primary">Designation</th>
-            <th className="table-primary">Company</th>
-            <th className="table-primary">Industry</th>
-            <th className="table-primary">Email</th>
-            <th className="table-primary">Phone number</th>
-            <th className="table-primary">Country</th>
-            <th className="table-primary">Action</th>
+    <div className='contacts-container'>
+      <Search/>
+      <ImportNavBar value={deleteData} />
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" name='del' onChange={handleCheckAll} /></th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Company</th>
+            <th>Industry</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Country</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody className="table-primary">
+        <tbody>
+          {/* To Render Server Response */}
           {
             data?.map((data, index) => {
-              return (
-                <tr key={index} className="table-primary">
-                  <td><input type="checkbox" /></td>
-                  <td className="table-primary">{data.name}</td>
-                  <td className="table-primary">{data.designation}</td>
-                  <td className="table-primary">{data.company}</td>
-                  <td className="table-primary">{data.industry}</td>
-                  <td className="table-primary">{data.email}</td>
-                  <td className="table-primary">{data.phone}</td>
-                  <td className="table-primary">{data.country}</td>
-                  <td className="table-primary">
-                    <i className="fa-regular fa-pen-to-square mx-1"></i>
-                    <i className="fa-solid fa-trash mx-1" style={{"cursor": "pointer"}}></i></td>
+              return(
+                <tr key={index}>
+                  {/* <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> */}
+                  <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
+                  <td>{data.name}</td>
+                  <td>{data.designation}</td>
+                  <td>{data.company}</td>
+                  <td>{data.industry}</td>
+                  <td>{data.email}</td>
+                  <td>{data.phone}</td>
+                  <td>{data.country}</td>
+                  <td>action</td>
                 </tr>
               )
             })
