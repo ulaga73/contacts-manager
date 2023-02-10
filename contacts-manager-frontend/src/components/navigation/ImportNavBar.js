@@ -27,7 +27,7 @@ const ImportNavBar = (props) => {
 
             <div className="d-flex">
 
-            <button type="button" className="btn btn-primary  btn-sm my-1 mx-1">Delete</button>
+            <button type="button" className="btn btn-primary  btn-sm my-1 mx-1" onClick={handleClick}>Delete</button>
 
 
 

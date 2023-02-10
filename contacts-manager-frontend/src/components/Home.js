@@ -7,8 +7,8 @@ const Home = () => {
   return (
 
     <div className='contacts-container '> 
-    <Search/>
-      <ImportNavBar />
+    {/* <Search/>
+      <ImportNavBar /> */}
       <Contacts />
     </div>
 
