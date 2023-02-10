@@ -42,12 +42,15 @@ const Login = (props) => {
                 <div className="mb-3">
 
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" value={credential.email} className="form-control" id="email" name="email" aria-describedby="emailHelp" onChange={onChange} />
+                    <input type="email" value={credential.email} className="form-control" id="email" name="email" aria-describedby="emailHelp" onChange={onChange} placeholder="name@example.com" />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" value={credential.password} className="form-control" id="password" name="password" onChange={onChange} />
+                    <div id="passwordHelpBlock" className="form-text">
+                        Your password must be 6 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </div>
                 </div>
                 <button type="submit" className="btn btn-primary" >Submit</button>
             </form>
