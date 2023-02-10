@@ -24,6 +24,7 @@ const Home = () => {
     })
   }, [])
 
+  
   const handleDataFromChild = (data) => {
     // Do something with the data passed back from the child
     // update data
@@ -31,12 +32,12 @@ const Home = () => {
     console.log(data)
     setContacts([data]);
   }
-
   // if search input has changed but nothing selected, display all contact. 
   const handleNewSearch = () => {
     // reset contacts to all contacts
     setContacts(allContacts);
   }
+
   return (
     <div>
       <Search contacts={contacts} onDataFromChild={handleDataFromChild} onSearchChange={handleNewSearch}/>
