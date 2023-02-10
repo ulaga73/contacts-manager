@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ImportNavBar from '../navigation/ImportNavBar';
 import Search from '../search/Search';
-
+import contact from '../contactpage/contact.css'
 
 const Contact = () => {
   //State Variables
   const [apiData, setApiData] = useState("");
   const [deleteData, setDeleteData] = useState([]);
   const [select, setSelect] = useState(false);
-
-
+  const [hoverIndex, setHoverIndex] = useState(-1);
   const [contacts, setContacts] = useState([])
   //const [allContacts, setAllContacts] = useState([]);
 
@@ -64,15 +63,12 @@ const Contact = () => {
     for (let i = 0; i < contacts.length; i++) {
       let contact = contacts[i];
       let found = false;
-      for (let j = 0; j < deletedContactIds.length; j++)
-      {
-        if (contact._id == deletedContactIds[j])
-        {
+      for (let j = 0; j < deletedContactIds.length; j++) {
+        if (contact._id == deletedContactIds[j]) {
           found = true;
         }
       }
-      if (found == false)
-      {
+      if (found == false) {
         newItems.push(contact);
       }
     }
@@ -97,7 +93,14 @@ const Contact = () => {
 
   }
 
+  //****************TOOLTIP */
+  const handleMouseEnter = index => {
+    setHoverIndex(index);
+  };
 
+  const handleMouseLeave = () => {
+    setHoverIndex(-1);
+  };
   // JSX
   return (
     <div className='contacts-container'>
@@ -130,7 +133,12 @@ const Contact = () => {
                   <td>{data.designation}</td>
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
-                  <td>{data.email}</td>
+                  <td onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
+                    //  <span class="tooltip">Hover over me
+                     <span class="tooltiptext" >{data.email}</span>
+                    //  </span>
+                    )}
+                  </td>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
