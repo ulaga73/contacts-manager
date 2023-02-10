@@ -31,6 +31,8 @@ const Search = (props) => {
     setSearchResults([]);
   }
 
+  
+
   return (
     <div>
       <nav class="navbar navbar-light  bg-light" >
