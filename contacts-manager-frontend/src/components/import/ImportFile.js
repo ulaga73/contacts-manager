@@ -42,9 +42,9 @@ const ImportFile = () => {
             </>}
         </div>
       </div>
-      <div className="cancel-button">
+      {/* <div className="cancel-button">
         <button>Cancel</button>
-      </div>
+      </div> */}
       
       <div className="import-done">
         {apiData && (

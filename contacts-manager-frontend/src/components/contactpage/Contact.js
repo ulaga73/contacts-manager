@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "../styles/Home.css";
 // import Contacts from './contactpage/Contact'
-import ImportNavBar from "./navigation/ImportNavBar"
-import Search from './Search'
+import ImportNavBar from '../navigation/ImportNavBar';
+import Search from '../search/Search';
 
 
 const Contact = () => {
@@ -59,7 +58,7 @@ const Contact = () => {
     <div className='contacts-container'>
       <Search/>
       <ImportNavBar value={deleteData} />
-      <table>
+      <table className="table table-info">
         <thead>
           <tr>
             <th><input type="checkbox" name='del' onChange={handleCheckAll} /></th>
@@ -88,7 +87,10 @@ const Contact = () => {
                   <td>{data.email}</td>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
-                  <td>action</td>
+                  <td>
+                  <i class="fa-solid fa-pen-to-square mx-1"></i>
+                  <i class="fa-solid fa-trash mx-1" style={{"cursor":"pointer"}}></i>
+                  </td>
                 </tr>
               )
             })
