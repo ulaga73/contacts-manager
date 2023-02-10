@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import Contacts from './contactpage/Contact'
 import ImportNavBar from '../navigation/ImportNavBar';
 import Search from '../search/Search';
 
@@ -7,10 +6,15 @@ import Search from '../search/Search';
 const Contact = () => {
   //State Variables
   const [apiData, setApiData] = useState("");
-  const [deleteData, setDeleteData] = useState([]); 
+  const [deleteData, setDeleteData] = useState([]);
   const [select, setSelect] = useState(false);
 
-//API Call
+
+  const [contacts, setContacts] = useState([])
+  //const [allContacts, setAllContacts] = useState([]);
+
+
+  //API Call
   useEffect(() => {
     console.log(localStorage.getItem("token"));
     fetch("http://localhost:5000/api/contacts", {
@@ -22,6 +26,7 @@ const Contact = () => {
     }).then((data) => {
       console.log(data);
       setApiData(data);
+      setContacts(data.result)
     })
   }, [])
   //Server Response
@@ -29,35 +34,76 @@ const Contact = () => {
   console.log(deleteData);
 
   // To select individual checkbox
-  function handleCheck(e){
+  function handleCheck(e) {
     console.log(e.target.checked);
-    if(e.target.checked) {
+    if (e.target.checked) {
       setDeleteData([...deleteData, e.target.id]);
-    }else{
+    } else {
       setDeleteData(deleteData.filter(val => val !== e.target.id))
     }
   }
 
   // To Select All checkboxes
-  function handleCheckAll(e){
+  function handleCheckAll(e) {
     setSelect(!select);
-    if(e.target.checked){
+    if (e.target.checked) {
       const valObj = apiData.result;
       let arr = [];
-      for(let i = 0; i < valObj.length; i++){
+      for (let i = 0; i < valObj.length; i++) {
         const valId = valObj[i]._id;
         arr.push(valId);
       }
       setDeleteData([...deleteData, ...arr]);
-    }else{
+    } else {
       setDeleteData([]);
     }
   }
+
+  const refreshContactListAfterDelete = (deletedContactIds) => {
+    let newItems = [];
+    for (let i = 0; i < contacts.length; i++) {
+      let contact = contacts[i];
+      let found = false;
+      for (let j = 0; j < deletedContactIds.length; j++)
+      {
+        if (contact._id == deletedContactIds[j])
+        {
+          found = true;
+        }
+      }
+      if (found == false)
+      {
+        newItems.push(contact);
+      }
+    }
+    setContacts(newItems)
+  }
+
+
+  // *****************SEARCH************
+  const handleRecommendedListSelection = (selectedContact) => {
+    // Do something with the data passed back from the child
+    // update data
+    console.log("home callback function called")
+    console.log(selectedContact)
+    setContacts([selectedContact]);
+  }
+  const allContacts = apiData.result;
+  // if search input has changed but nothing selected, display all contact. 
+  const handleNewSearch = () => {    // contact list should show all contact if  user is typing  
+    // reset contacts to all contacts
+    setContacts(allContacts);
+
+
+  }
+
+
   // JSX
   return (
     <div className='contacts-container'>
-      <Search/>
-      <ImportNavBar value={deleteData} />
+      <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} />
+
+      <ImportNavBar value={deleteData} onContactDelete={refreshContactListAfterDelete} />
       <table className="table table-info">
         <thead>
           <tr>
@@ -75,8 +121,8 @@ const Contact = () => {
         <tbody>
           {/* To Render Server Response */}
           {
-            data?.map((data, index) => {
-              return(
+            contacts?.map((data, index) => {
+              return (
                 <tr key={index}>
                   {/* <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> */}
                   <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
@@ -88,8 +134,8 @@ const Contact = () => {
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
-                  <i class="fa-solid fa-pen-to-square mx-1"></i>
-                  <i class="fa-solid fa-trash mx-1" style={{"cursor":"pointer"}}></i>
+                    <i class="fa-solid fa-pen-to-square mx-1"></i>
+                    <i class="fa-solid fa-trash mx-1" style={{ "cursor": "pointer" }}></i>
                   </td>
                 </tr>
               )

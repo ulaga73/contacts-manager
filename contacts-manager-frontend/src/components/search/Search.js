@@ -27,7 +27,7 @@ const Search = (props) => {
 
   const onRecommendationSelected = (contact) => {
     setSearchTerm(contact.email)
-    props.onDataFromChild(contact)
+    props.onRecommendedListSelection(contact)
     setSearchResults([]);
   }
 
