@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './search.css';
+// import './search.css';
 const Search = (props) => {
   const contacts = props.contacts;
   //console.log(contacts)
@@ -38,7 +38,7 @@ const Search = (props) => {
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm}
           onChange={handleSearch} />
       </div>
-      <ul>
+      <ul >
         {searchResults.map((contact) => (
           <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
         ))}
