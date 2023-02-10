@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './search.css';
+// import './search.css';
 const Search = (props) => {
   const contacts = props.contacts;
   //console.log(contacts)
@@ -7,10 +7,10 @@ const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event) => {
-    var searchTerm = event.target.value
+    let searchTerm = event.target.value
     setSearchTerm(searchTerm)
     // search contacts starting with this value
-    if (searchTerm == "") {
+    if (searchTerm === "") {
       setSearchResults([]);
       return;
     }
@@ -33,9 +33,10 @@ const Search = (props) => {
 
   return (
     <div>
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light  bg-light" >
+        <h5 className='mx-2'>Total Contacts</h5>
       <div>
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm}
+        <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}
           onChange={handleSearch} />
       </div>
       <ul>
@@ -44,7 +45,7 @@ const Search = (props) => {
         ))}
       </ul>
 
-      <p>{localStorage.getItem("username")}</p>
+      <p className='mx-2'>{localStorage.getItem("username")}</p>
       </nav>
     </div>
   )
