@@ -7,34 +7,26 @@ const router = express.Router();
 //POST API to add contacts
 router.post("/", fetchUser, async(req, res) => {
   const { file } = req.files;
-  const data = file.data.toString().split(",");
+  const contacts = file.data.toString().split("\r\n");
+  console.log(contacts);
   try{
-    const postData = await Contact.create({
-      name: data[0],
-      designation: data[1],
-      company: data[2],
-      industry: data[3],
-      email: data[4],
-      phone: data[5],
-      country: data[6],
-      user: req.user.id
-    })
-    // console.log(req.body);
-    // const{name, designation, company, industry, email, phone, country} = req.body;
-    // const postData = await Contact.create({
-    //   name,
-    //   designation,
-    //   company,
-    //   industry,
-    //   email,
-    //   phone,
-    //   country,
-    //   user: req.user.id
-    // })
-    console.log(postData);
+    for(let i = 0; i < contacts.length; i++){
+      let data = contacts[i].split(",");
+      const postData = await Contact.create({
+        name: data[0],
+        designation: data[1],
+        company: data[2],
+        industry: data[3],
+        email: data[4],
+        phone: data[5],
+        country: data[6],
+        user: req.user.id
+      })
+      console.log(postData);
+    }
     res.json({
       status: "success",
-      result: postData
+      result: "Uploaded files are added to the database"
     })
   }catch(err){
     console.error(err.message);
@@ -45,6 +37,7 @@ router.post("/", fetchUser, async(req, res) => {
   }
 });
 
+// GET API to fetch all contacts
 router.get('/', fetchUser, async (req, res) => {
   try {
     console.log(req.user.id);
@@ -63,14 +56,20 @@ router.get('/', fetchUser, async (req, res) => {
 })
 
 //DELETE API to remove contacts
-router.delete("/:id", async(req, res) => {
-  console.log(req.params);
+router.delete("/", async(req, res) => {
+  console.log(req.body);
+  const {delId} = req.body;
   try{
-    const delData = await Contact.deleteOne({_id: req.params.id});
-    console.log(delData);
+    for(let i = 0; i < delId.length; i++){
+      const row = await Contact.findOne({_id: delId[i]});
+      if(row){
+        const delData = await Contact.deleteOne({_id: delId[i]});
+        console.log(delData);
+      }
+    }
     res.json({
       status: "success",
-      result: delData
+      result: "Selected files are deleted"
     })
   }catch(err){
     res.status(400).json({

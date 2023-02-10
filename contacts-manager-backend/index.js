@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const app = express();
-const port = 5000;
+const port = 5000 || process.env.PORT;
 var cors = require("cors");
 const fileUpload = require("express-fileupload");
 app.use(cors());

@@ -33,6 +33,7 @@ const Search = (props) => {
 
   return (
     <div>
+      <nav class="navbar navbar-light bg-light">
       <div>
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm}
           onChange={handleSearch} />
@@ -42,7 +43,9 @@ const Search = (props) => {
           <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
         ))}
       </ul>
-      
+
+      <p>{localStorage.getItem("username")}</p>
+      </nav>
     </div>
   )
 }

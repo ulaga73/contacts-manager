@@ -1,15 +1,12 @@
-
-import React, { useEffect, useState } from 'react';
-import "../styles/Home.css";
-// import Contacts from './contactpage/Contact'
-import ImportNavBar from "./navigation/ImportNavBar"
+import React from 'react';
+import Contacts from './contactpage/Contact'
+import ImportNavBar from './navigation/ImportNavBar';
 import Search from './search/Search';
-
 const Home = () => {
-  const [contacts, setContacts] = useState([])
-  const [allContacts, setAllContacts] = useState([]);
 
-
+    const [contacts, setContacts] = useState([])
+    const [allContacts, setAllContacts] = useState([]);
+  
   useEffect(() => {
     // console.log(localStorage.getItem("token"));
     fetch("http://localhost:5000/api/contacts", {
@@ -39,51 +36,14 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <Search contacts={contacts} onDataFromChild={handleDataFromChild} onSearchChange={handleNewSearch}/>
 
-      <div className='contacts-container'>
-        <table>
-          <thead>
-            <tr>
-              <th><input type="checkbox" /></th>
-              <th>Name</th>
-              <th>Designation</th>
-              <th>Company</th>
-              <th>Industry</th>
-              <th>Email</th>
-              <th>Phone number</th>
-              <th>Country</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              contacts?.map((data, index) => {
-                return(
-                  <tr key={index}>
-                    <td><input type="checkbox" /></td>
-                    <td>{data.name}</td>
-                    <td>{data.designation}</td>
-                    <td>{data.company}</td>
-                    <td>{data.industry}</td>
-                    <td>{data.email}</td>
-                    <td>{data.phone}</td>
-                    <td>{data.country}</td>
-                    <td>action</td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <ImportNavBar/>
-        {/* <Contacts/> */}
-      </div>
+    <div className='contacts-container '> 
+    {/* <Search/>
+      <ImportNavBar /> */}
+      <Contacts />
     </div>
+
   )
 }
 
-export default Home
+export default Home;
