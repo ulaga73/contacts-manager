@@ -27,15 +27,15 @@ const Search = (props) => {
 
   const onRecommendationSelected = (contact) => {
     setSearchTerm(contact.email)
-    props.onDataFromChild(contact)
+    props.onRecommendedListSelection(contact)
     setSearchResults([]);
   }
 
   
 
   return (
-    <div>
-      <nav class="navbar navbar-light  bg-light" >
+    <div className='parent'>
+      <nav className="navbar navbar-light  bg-light" >
         <h5 className='mx-2'>Total Contacts</h5>
       <div>
         <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}

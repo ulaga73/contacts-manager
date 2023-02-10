@@ -1,14 +1,13 @@
 import React from 'react';
 import Contacts from './contactpage/Contact'
 
-const Home = () => {
+import ImportNavBar from './navigation/ImportNavBar';
 
-  
+const Home = () => {
 
   return (
 
     <div className='contacts-container '> 
-   
       <Contacts />
     </div>
 
