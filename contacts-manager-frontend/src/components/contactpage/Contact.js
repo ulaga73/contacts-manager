@@ -57,7 +57,7 @@ const Contact = () => {
       setDeleteData([]);
     }
   }
-
+  // refresh contact after delete
   const refreshContactListAfterDelete = (deletedContactIds) => {
     let newItems = [];
     for (let i = 0; i < contacts.length; i++) {
@@ -93,7 +93,7 @@ const Contact = () => {
 
   }
 
-  //****************TOOLTIP */
+  //****************TOOLTIP********/
   const handleMouseEnter = index => {
     setHoverIndex(index);
   };
@@ -134,10 +134,10 @@ const Contact = () => {
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
                   <td onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
-                    //  <span class="tooltip">Hover over me
-                     <span class="tooltiptext" >{data.email}</span>
-                    //  </span>
-                    )}
+                      <span class="tooltip">
+                    <span class="tooltiptext" >{data.email}</span>
+                      </span>
+                  )}
                   </td>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
