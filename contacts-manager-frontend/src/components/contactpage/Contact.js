@@ -7,6 +7,7 @@ import 'tippy.js/dist/tippy.css';
 
 const Contact = () => {
   //State Variables
+  const [color, setColor] = useState('black');
   const [apiData, setApiData] = useState("");
   const [deleteData, setDeleteData] = useState([]);
   const [select, setSelect] = useState(false);
@@ -111,14 +112,14 @@ const Contact = () => {
         <thead>
           <tr>
             <th><input type="checkbox" name='del' onChange={handleCheckAll} /></th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Company</th>
-            <th>Industry</th>
-            <th >Email</th>
-            <th>Phone number</th>
-            <th>Country</th>
-            <th>Action</th>
+            <th className="font-monospace">Name</th>
+            <th className="font-monospace">Designation</th>
+            <th className="font-monospace">Company</th>
+            <th className="font-monospace">Industry</th>
+            <th className="font-monospace" >Email</th>
+            <th className="font-monospace">Phone number</th>
+            <th className="font-monospace">Country</th>
+            <th className="font-monospace">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -128,24 +129,26 @@ const Contact = () => {
               return (
                 <tr key={index}>
                   {
-                    select ? 
-                    <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> :
-                    <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
+                    select ?
+                      <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> :
+                      <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
                   }
                   <td>{data.name}</td>
                   <td>{data.designation}</td>
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
                   {/* <td  onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
-                      <span class="tooltip">
-                    <span class="tooltiptext" >{data.email}</span>
+                      <span className="tooltip">
+                    <span className="tooltiptext" >{data.email}</span>
                       </span>
                   )}
                   </td> */}
-                   {/* <td data-bs-toggle="tooltip" data-bs-placement="bottom" title={data.email} hover={{"color":"#2DA5FC"}}>{data.email}</td> */}
-                   <Tippy content={data.email} >
-                   <td>{data.email}</td>
-                   </Tippy>
+                  {/* <td data-bs-toggle="tooltip" data-bs-placement="bottom" title={data.email} hover={{"color":"#2DA5FC"}}>{data.email}</td> */}
+                  <Tippy className="font-monospace text-decoration-underline" content={data.email} style={{ color: color }}
+                      onMouseEnter={() => setColor('#2DA5FC')}
+                      onMouseLeave={() => setColor('black')}>
+                    <td >{data.email}</td>
+                  </Tippy>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
