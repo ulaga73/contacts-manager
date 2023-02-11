@@ -6,7 +6,7 @@ const DeleteFile = (props) => {
     const [status, setStatus] = useState(false);
     async function handleClick(){
         if(props.value.length){
-            const response = await fetch("http://localhost:5000/api/contacts", {
+            const response = await fetch("https://contacts-manager-tsfd.onrender.com/api/contacts", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
