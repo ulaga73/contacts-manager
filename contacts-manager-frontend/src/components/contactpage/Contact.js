@@ -77,8 +77,21 @@ const Contact = () => {
   const handleNewSearch = () => {    // contact list should show all contact if  user is typing  
     // reset contacts to all contacts
     setContacts(allContacts);
+  }
 
+  async function handleDelete(id){
+    const response = await fetch("http://localhost:5000/api/contacts", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({delId: [id]})
+    })
 
+    const res = await response.json();
+    if(res.status){
+      window.location.reload();
+    }
   }
 
   //****************TOOLTIP********/
@@ -139,8 +152,8 @@ const Contact = () => {
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
-                    <i className="fa-solid fa-pen-to-square mx-1"></i>
-                    <i className="fa-solid fa-trash mx-1" style={{ "cursor": "pointer" }}></i>
+                    <i class="fa-solid fa-pen-to-square mx-1"></i>
+                    <i class="fa-solid fa-trash mx-1" style={{ "cursor": "pointer" }} onClick={() => {handleDelete(data._id)}}></i>
                   </td>
                 </tr>
               )
