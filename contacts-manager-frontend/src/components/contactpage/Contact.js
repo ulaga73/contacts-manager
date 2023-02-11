@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import ImportNavBar from '../navigation/ImportNavBar';
 import Search from '../search/Search';
 // import contact from '../contactpage/contact.css'
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const Contact = () => {
   //State Variables
   const [apiData, setApiData] = useState("");
   const [deleteData, setDeleteData] = useState([]);
   const [select, setSelect] = useState(false);
-  const [hoverIndex, setHoverIndex] = useState(-1);
+  // const [hoverIndex, setHoverIndex] = useState(-1);
   const [contacts, setContacts] = useState([])
   //const [allContacts, setAllContacts] = useState([]);
 
@@ -95,13 +97,13 @@ const Contact = () => {
   }
 
   //****************TOOLTIP********/
-  const handleMouseEnter = index => {
-    setHoverIndex(index);
-  };
+  // const handleMouseEnter = index => {
+  //   setHoverIndex(index);
+  // };
 
-  const handleMouseLeave = () => {
-    setHoverIndex(-1);
-  };
+  // const handleMouseLeave = () => {
+  //   setHoverIndex(-1);
+  // };
   // JSX
   return (
     <div className='contacts-container'>
@@ -134,12 +136,16 @@ const Contact = () => {
                   <td>{data.designation}</td>
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
-                  <td  onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
+                  {/* <td  onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
                       <span class="tooltip">
                     <span class="tooltiptext" >{data.email}</span>
                       </span>
                   )}
-                  </td>
+                  </td> */}
+                   {/* <td data-bs-toggle="tooltip" data-bs-placement="bottom" title={data.email} hover={{"color":"#2DA5FC"}}>{data.email}</td> */}
+                   <Tippy content={data.email} >
+                   <td>{data.email}</td>
+                   </Tippy>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
