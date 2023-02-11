@@ -1,35 +1,8 @@
-.form-control.me-2 {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-    width: 50%;
-    box-sizing: border-box;
-    margin: 20px 0;
-  }
-  
-  @media (max-width: 767px) {
-    .form-control.me-2 {
-      width: 100%;
-    }
-  }
-  
-.parent{
-  position: relative;  
-}
-
-li{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-ul {
-  list-style-type: none;
-  position: absolute;
-  width: 100%;
-  bottom: 40px; /* The top property should be equal to the height of the input element */
-  left: 0;
-  list-style: none;
+.search-list{
   background-color: white;
-  z-index: 1;
+  border-radius: 10px;
 }
-  
+.list-item:hover{
+  font-weight: 500;
+  cursor: pointer;
+}

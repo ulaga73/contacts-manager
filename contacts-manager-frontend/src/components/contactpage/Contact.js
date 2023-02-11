@@ -58,23 +58,7 @@ const Contact = () => {
       setDeleteData([]);
     }
   }
-  // refresh contact after delete
-  const refreshContactListAfterDelete = (deletedContactIds) => {
-    let newItems = [];
-    for (let i = 0; i < contacts.length; i++) {
-      let contact = contacts[i];
-      let found = false;
-      for (let j = 0; j < deletedContactIds.length; j++) {
-        if (contact._id === deletedContactIds[j]) {
-          found = true;
-        }
-      }
-      if (found === false) {
-        newItems.push(contact);
-      }
-    }
-    setContacts(newItems)
-  }
+
 
 
   // *****************SEARCH************
@@ -107,7 +91,7 @@ const Contact = () => {
     <div className='contacts-container'>
       <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} />
 
-      <ImportNavBar value={deleteData} onContactDelete={refreshContactListAfterDelete} />
+      <ImportNavBar value={deleteData} />
       <table className="table table-info">
         <thead>
           <tr>
