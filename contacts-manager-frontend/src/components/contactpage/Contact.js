@@ -78,8 +78,11 @@ const Contact = () => {
             data?.map((data, index) => {
               return(
                 <tr key={index}>
-                  {/* <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> */}
-                  <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
+                  {
+                    select ? 
+                    <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} checked={select} /></td> :
+                    <td><input type="checkbox" name='del' id={data._id} onChange={handleCheck} /></td>
+                  }
                   <td>{data.name}</td>
                   <td>{data.designation}</td>
                   <td>{data.company}</td>

@@ -20,6 +20,7 @@ const ImportFile = () => {
       }).then((data) => {
         console.log(data);
         setApiData(data);
+        window.location.reload();
       })
     }
   }, [file])
@@ -45,15 +46,6 @@ const ImportFile = () => {
       {/* <div className="cancel-button">
         <button>Cancel</button>
       </div> */}
-      
-      <div className="import-done">
-        {apiData && (
-          <>
-            <h2>Import Complete</h2>
-            <p>CSV File is Uploaded</p>
-          </>
-        )}
-      </div>
     </div>
   );
 };

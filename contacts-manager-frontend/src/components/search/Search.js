@@ -10,7 +10,7 @@ const Search = (props) => {
     var searchTerm = event.target.value
     setSearchTerm(searchTerm)
     // search contacts starting with this value
-    if (searchTerm == "") {
+    if (searchTerm === "") {
       setSearchResults([]);
       return;
     }
