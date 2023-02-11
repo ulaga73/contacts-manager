@@ -10,7 +10,21 @@ const ImportNavBar = (props) => {
 
     function handleClick(){
         setDelComponent(!delComponent);
+        if (props.value.length) {
+            fetch("http://localhost:5000/api/contacts", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ delId: props.value })
+            })
+
+            props.onContactDelete(props.value);
+        }
+
     }
+
+
     return (
         <>
         <div className="container d-flex justify-content-between my-2">
@@ -25,7 +39,7 @@ const ImportNavBar = (props) => {
 
             <div className="d-flex">
 
-            <button type="button" className="btn btn-primary  btn-sm my-1 mx-1" onClick={handleClick}>Delete</button>
+                <button type="button" className="btn btn-primary  btn-sm my-1 mx-1" onClick={handleClick}>Delete</button>
 
 
 

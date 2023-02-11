@@ -13,3 +13,23 @@
     }
   }
   
+.parent{
+  position: relative;  
+}
+
+li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+  position: absolute;
+  width: 100%;
+  bottom: 40px; /* The top property should be equal to the height of the input element */
+  left: 0;
+  list-style: none;
+  background-color: white;
+  z-index: 1;
+}
+  
