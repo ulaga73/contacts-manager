@@ -105,7 +105,7 @@ const Contact = () => {
   // JSX
   return (
     <div className='contacts-container'>
-      <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} style={{"z-index": "989"}}/>
+      <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} />
 
       <ImportNavBar value={deleteData} onContactDelete={refreshContactListAfterDelete} />
       <table className="table table-info">
