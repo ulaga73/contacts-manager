@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ImportNavBar from '../navigation/ImportNavBar';
 import Search from '../search/Search';
-// import contact from '../contactpage/contact.css'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import DeleteFile from '../delete/DeleteFile';
 
 const Contact = () => {
   //State Variables
-  const [color, setColor] = useState('black');
   const [apiData, setApiData] = useState("");
   const [deleteData, setDeleteData] = useState([]);
   const [select, setSelect] = useState(false);
-  // const [hoverIndex, setHoverIndex] = useState(-1);
   const [contacts, setContacts] = useState([])
   //const [allContacts, setAllContacts] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
@@ -99,13 +96,7 @@ const Contact = () => {
   }
 
   //****************TOOLTIP********/
-  // const handleMouseEnter = index => {
-  //   setHoverIndex(index);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setHoverIndex(-1);
-  // };
+ 
   // JSX
   return (
     <div className='contacts-container'>
@@ -144,23 +135,15 @@ const Contact = () => {
                   <td>{data.designation}</td>
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
-                  {/* <td  onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
-                      <span className="tooltip">
-                    <span className="tooltiptext" >{data.email}</span>
-                      </span>
-                  )}
-                  </td> */}
-                  {/* <td data-bs-toggle="tooltip" data-bs-placement="bottom" title={data.email} hover={{"color":"#2DA5FC"}}>{data.email}</td> */}
-                  <Tippy className="font-monospace text-decoration-underline" content={data.email} style={{ color: color }}
-                      onMouseEnter={() => setColor('#2DA5FC')}
-                      onMouseLeave={() => setColor('black')}>
+                  
+                  <Tippy className="font-monospace text-decoration-underline" content={data.email}>
                     <td >{data.email}</td>
                   </Tippy>
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
-                    <i class="fa-solid fa-pen-to-square mx-1"></i>
-                    <i class="fa-solid fa-trash mx-1" style={{ "cursor": "pointer" }} onClick={() => {handleDelete(data._id)}}></i>
+                    <i className="fa-solid fa-pen-to-square mx-1"></i>
+                    <i className="fa-solid fa-trash mx-1" style={{ "cursor": "pointer" }} onClick={() => {handleDelete(data._id)}}></i>
                   </td>
                 </tr>
               )
