@@ -68,7 +68,7 @@ router.delete("/", async(req, res) => {
       }
     }
     res.json({
-      status: "success",
+      status: true,
       result: "Selected files are deleted"
     })
   }catch(err){

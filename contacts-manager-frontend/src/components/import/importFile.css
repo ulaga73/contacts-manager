@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: center;
     /* width: 21rem;
     height: 20rem;
     border: 1px solid;
@@ -16,7 +17,6 @@
 .drag-zone{
     margin-bottom: 20px;
     align-self: center;
-    text-align: center;
     padding: 10px;
     width: 12rem;
 }
