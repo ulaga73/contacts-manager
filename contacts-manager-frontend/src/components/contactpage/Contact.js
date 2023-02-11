@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ImportNavBar from '../navigation/ImportNavBar';
 import Search from '../search/Search';
-import contact from '../contactpage/contact.css'
+// import contact from '../contactpage/contact.css'
 
 const Contact = () => {
   //State Variables
@@ -29,6 +29,7 @@ const Contact = () => {
     })
   }, [])
   //Server Response
+  // eslint-disable-next-line
   const data = apiData.result;
   console.log(deleteData);
 
@@ -64,11 +65,11 @@ const Contact = () => {
       let contact = contacts[i];
       let found = false;
       for (let j = 0; j < deletedContactIds.length; j++) {
-        if (contact._id == deletedContactIds[j]) {
+        if (contact._id === deletedContactIds[j]) {
           found = true;
         }
       }
-      if (found == false) {
+      if (found === false) {
         newItems.push(contact);
       }
     }
@@ -104,7 +105,7 @@ const Contact = () => {
   // JSX
   return (
     <div className='contacts-container'>
-      <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} />
+      <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} style={{"z-index": "989"}}/>
 
       <ImportNavBar value={deleteData} onContactDelete={refreshContactListAfterDelete} />
       <table className="table table-info">
@@ -115,7 +116,7 @@ const Contact = () => {
             <th>Designation</th>
             <th>Company</th>
             <th>Industry</th>
-            <th>Email</th>
+            <th >Email</th>
             <th>Phone number</th>
             <th>Country</th>
             <th>Action</th>
@@ -133,7 +134,7 @@ const Contact = () => {
                   <td>{data.designation}</td>
                   <td>{data.company}</td>
                   <td>{data.industry}</td>
-                  <td onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
+                  <td  onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>{data.email}{hoverIndex === index && (
                       <span class="tooltip">
                     <span class="tooltiptext" >{data.email}</span>
                       </span>

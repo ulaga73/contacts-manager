@@ -31,23 +31,25 @@ const Search = (props) => {
     setSearchResults([]);
   }
 
-  
+
 
   return (
-    <div className='parent'>
+    <div className='parent' >
       <nav className="navbar navbar-light  bg-light" >
         <h5 className='mx-2'>Total Contacts</h5>
-      <div>
-        <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}
-          onChange={handleSearch} />
-      </div>
-      <ul >
-        {searchResults.map((contact) => (
-          <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
-        ))}
-      </ul>
+        <div >
+          <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}
+            onChange={handleSearch} />
 
-      <p className='mx-2'>{localStorage.getItem("username")}</p>
+          <ul style={{"z-index": "10","position": "absolute"}}>
+            {searchResults.map((contact) => (
+              <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
+            ))}
+          </ul>
+        </div>
+
+
+        <p className='mx-2'>{localStorage.getItem("username")}</p>
       </nav>
     </div>
   )
