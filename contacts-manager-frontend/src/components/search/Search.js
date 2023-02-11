@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import './search.css';
+import './search.css';
 const Search = (props) => {
   const contacts = props.contacts;
   //console.log(contacts)
@@ -12,6 +12,7 @@ const Search = (props) => {
     // search contacts starting with this value
     if (searchTerm === "") {
       setSearchResults([]);
+      window.location.reload();
       return;
     }
 
@@ -41,9 +42,9 @@ const Search = (props) => {
           <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}
             onChange={handleSearch} />
 
-          <ul style={{"z-index": "10","position": "absolute"}}>
+          <ul style={{"z-index": "10","position": "absolute"}} className="search-list">
             {searchResults.map((contact) => (
-              <li key={contact.email} onClick={() => onRecommendationSelected(contact)}>{contact.email}</li>
+              <li key={contact.email} onClick={() => onRecommendationSelected(contact)} className="list-item">{contact.email}</li>
             ))}
           </ul>
         </div>

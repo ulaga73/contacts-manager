@@ -1,9 +1,15 @@
 // import { Link } from "react-router-dom";
+import { useState } from "react";
+import DeleteFile from "../delete/DeleteFile";
 import ImportFile from "../import/ImportFile";
 
 
 const ImportNavBar = (props) => {
-    function handleClick() {
+    const [delComponent, setDelComponent] = useState(false);
+    console.log(props)
+
+    function handleClick(){
+        setDelComponent(!delComponent);
         if (props.value.length) {
             fetch("http://localhost:5000/api/contacts", {
                 method: "DELETE",
@@ -20,6 +26,7 @@ const ImportNavBar = (props) => {
 
 
     return (
+        <>
         <div className="container d-flex justify-content-between my-2">
 
             <div>
@@ -65,6 +72,10 @@ const ImportNavBar = (props) => {
 
 
         </div>
+        <div>
+            {delComponent && <DeleteFile value={props.value} />}
+        </div>
+        </>
     )
 }
 
