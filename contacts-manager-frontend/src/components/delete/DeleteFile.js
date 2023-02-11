@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./deleteFile.css";
 
 const DeleteFile = (props) => {
+    // let navigate=useNavigate()
     const [status, setStatus] = useState(false);
     async function handleClick(){
         if(props.value.length){
@@ -16,15 +17,17 @@ const DeleteFile = (props) => {
             setStatus(result.status);
         }
     }
+
+   
     return(
-        <div className="delete-container">
+        <div className="delete-container card">
             <div className="text-contain">
                 <p style={{fontWeight:700}}>Delete Contacts</p>
-                <p>Sure you want delete this Contacts?</p>
+                <p className="font-monospace">Sure you want delete this Contacts?</p>
             </div>
             <div className="btn-contain">
-                <button>Cancel</button>
-                <button onClick={handleClick}>Ok</button>
+               <button onClick={() => window.location.reload()} className="btn btn-secondary" >Cancel</button>
+                <button  className="btn btn-warning" onClick={handleClick}>Ok</button>
             </div>
             <div className="delete-done">
                 {

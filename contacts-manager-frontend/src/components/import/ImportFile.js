@@ -30,7 +30,7 @@ const ImportFile = () => {
       <div className="import-container">
 
         <div className="drag-zone">
-          <p>Drag & Drop a CSV File to Upload</p>
+          <p className="font-monospace">Drag & Drop a CSV File to Upload</p>
           <div className="drop-zone">
             <input type="file" onChange={(e) => { setFile(e.target.files[0]) }} />
           </div>
@@ -38,8 +38,8 @@ const ImportFile = () => {
         <div className="import-done container">
           {apiData &&
             <>
-              <h2>Import Complete</h2>
-              <p>CSV File is Uploaded</p>
+              <h2 >Import Complete</h2>
+              <p className="font-monospace">CSV File is Uploaded</p>
             </>}
         </div>
       </div>

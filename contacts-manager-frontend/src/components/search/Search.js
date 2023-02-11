@@ -42,7 +42,7 @@ const Search = (props) => {
           <input className="form-control me-2" type="search" placeholder="Search For Contacts" aria-label="Search" value={searchTerm}
             onChange={handleSearch} />
 
-          <ul style={{"z-index": "10","position": "absolute"}} className="search-list">
+          <ul style={{"zIndex": "10","position": "absolute"}} className="search-list">
             {searchResults.map((contact) => (
               <li key={contact.email} onClick={() => onRecommendationSelected(contact)} className="list-item">{contact.email}</li>
             ))}
