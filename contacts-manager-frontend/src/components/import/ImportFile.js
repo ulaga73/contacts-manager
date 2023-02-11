@@ -9,7 +9,7 @@ const ImportFile = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      fetch("http://localhost:5000/api/contacts", {
+      fetch("https://contacts-manager-tsfd.onrender.com/api/contacts", {
         method: "POST",
         headers: {
           "auth-token": localStorage.getItem('token')

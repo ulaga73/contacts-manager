@@ -11,7 +11,7 @@ const ImportNavBar = (props) => {
     function handleClick(){
         setDelComponent(!delComponent);
         if (props.value.length) {
-            fetch("http://localhost:5000/api/contacts", {
+            fetch("https://contacts-manager-tsfd.onrender.com/api/contacts", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"

@@ -26,7 +26,7 @@ if (alertTrigger) {
     const handleSubmit = async (e) => {
         e.preventDefault();
        const {name,email,password}= credential;
-        const response = await fetch("http://localhost:5000/api/auth/createuser", {
+        const response = await fetch("https://contacts-manager-tsfd.onrender.com/api/auth/createuser", {
             
             method: 'POST',
             headers: {

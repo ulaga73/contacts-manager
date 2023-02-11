@@ -18,7 +18,7 @@ const Contact = () => {
   //API Call
   useEffect(() => {
     console.log(localStorage.getItem("token"));
-    fetch("http://localhost:5000/api/contacts", {
+    fetch("https://contacts-manager-tsfd.onrender.com/api/contacts", {
       headers: {
         "auth-token": localStorage.getItem("token")
       }
@@ -81,18 +81,6 @@ const Contact = () => {
   async function handleDelete(id){
     setIsDelete(true);
     setDeleteData([...deleteData, id]);
-    // const response = await fetch("http://localhost:5000/api/contacts", {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({delId: [id]})
-    // })
-
-    // const res = await response.json();
-    // if(res.status){
-    //   window.location.reload();
-    // }
   }
 
   //****************TOOLTIP********/
