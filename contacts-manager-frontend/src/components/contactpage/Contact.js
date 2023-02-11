@@ -4,6 +4,7 @@ import Search from '../search/Search';
 // import contact from '../contactpage/contact.css'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import DeleteFile from '../delete/DeleteFile';
 
 const Contact = () => {
   //State Variables
@@ -14,6 +15,7 @@ const Contact = () => {
   // const [hoverIndex, setHoverIndex] = useState(-1);
   const [contacts, setContacts] = useState([])
   //const [allContacts, setAllContacts] = useState([]);
+  const [isDelete, setIsDelete] = useState(false);
 
 
   //API Call
@@ -80,18 +82,20 @@ const Contact = () => {
   }
 
   async function handleDelete(id){
-    const response = await fetch("http://localhost:5000/api/contacts", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({delId: [id]})
-    })
+    setIsDelete(true);
+    setDeleteData([...deleteData, id]);
+    // const response = await fetch("http://localhost:5000/api/contacts", {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({delId: [id]})
+    // })
 
-    const res = await response.json();
-    if(res.status){
-      window.location.reload();
-    }
+    // const res = await response.json();
+    // if(res.status){
+    //   window.location.reload();
+    // }
   }
 
   //****************TOOLTIP********/
@@ -108,6 +112,9 @@ const Contact = () => {
       <Search contacts={contacts} onRecommendedListSelection={handleRecommendedListSelection} onSearchChange={handleNewSearch} />
 
       <ImportNavBar value={deleteData} />
+      {
+        isDelete && <DeleteFile value={deleteData} />
+      }
       <table className="table table-info">
         <thead>
           <tr>
